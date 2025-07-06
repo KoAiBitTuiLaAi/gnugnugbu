@@ -182,8 +182,9 @@ set /p batchLatestVer=<batchLatestVer.txt
 if "%batchLatestVer%" GTR "%batchVersion%" (
     echo Đang cập nhật trình cài đặt...
 	timeout /t 3 > nul
-    "tools/wget.exe" -O "%~f0.tmp" https://raw.githubusercontent.com/KoAiBitTuiLaAi/gnugnugbu/main/gggngniweignwi.bat > nul 2>&1 || goto update_check_download_failed
-	move /y "%~f0.tmp" "%~f0" > nul 2>&1
+    "tools/wget.exe" -O "p4gvh_%batchLatestVer%.bat" https://raw.githubusercontent.com/KoAiBitTuiLaAi/gnugnugbu/main/gggngniweignwi.bat > nul 2>&1 || goto update_check_download_failed
+	start p4gvh_%batchLatestVer%.bat
+	(goto) 2>nul & del "%~f0"
 ) else (
 	echo Trình cài đặt đang ở phiên bản mới nhất.
 	echo Bắt đầu kiểm tra mod...
