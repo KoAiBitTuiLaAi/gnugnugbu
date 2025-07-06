@@ -26,7 +26,7 @@ cls
 	echo cần phải bật mạng để tải nội dung về.
 	echo Nhấn phím bất kỳ để tiếp tục cài đặt mà không chạy với quyền Administrator.
 pause >nul
-    goto update_check
+    goto arch_check
 ) else ( goto gotAdmin )
 
 :gotAdmin
@@ -34,26 +34,6 @@ pause >nul
 cls
     CD /D "%~dp0"
 :--------------------------------------    
-
-:update_check
-MODE 120,30
-title Trình cài đặt Persona 4 Golden Việt hóa - Cập nhật
-echo Đang kiểm tra cập nhật cho trình cài đặt...
-set batchVersion=1.1
-del batchLatestVer.txt > nul 2>&1
-"tools/wget.exe" -O batchLatestVer.txt https://raw.githubusercontent.com/KoAiBitTuiLaAi/gnugnugbu/main/gggngniweignwi/wuauadbubaw.txt > nul 2>&1 || goto update_check_download_failed
-set /p batchLatestVer=<batchLatestVer.txt
-
-if "%batchLatestVer%" GTR "%batchVersion%" (
-    echo Đang cập nhật trình cài đặt...
-	timeout /t 3 > nul
-    "tools/wget.exe" -O "p4gvh_%batchLatestVer%.bat" https://raw.githubusercontent.com/KoAiBitTuiLaAi/gnugnugbu/main/gggngniweignwi.bat > nul 2>&1 || goto update_check_download_failed
-	start p4gvh_%batchLatestVer%.bat
-	(goto) 2>nul & del "%~f0"
-) else (
-	echo Trình cài đặt đang ở phiên bản mới nhất.
-	timeout /t 3 > nul
-)
 
 :arch_check
 if %PROCESSOR_ARCHITECTURE%==x86 (
@@ -78,11 +58,33 @@ chcp 437 > nul 2>&1
 mkdir tools > nul 2>&1
 if not exist tools\7z.exe powershell "Invoke-WebRequest https://github.com/KoAiBitTuiLaAi/gnugnugbu/releases/download/dwawahjdawausuu/7z.exe -OutFile tools/7z_part.exe" || goto first_launch_download_failed
 powershell Rename-Item "tools/7z_part.exe" "7z.exe" > nul 2>&1
+if not exist tools\7z.dll powershell "Invoke-WebRequest https://github.com/KoAiBitTuiLaAi/gnugnugbu/releases/download/dwawahjdawausuu/7z.dll -OutFile tools/7z_part.dll" || goto first_launch_download_failed
+powershell Rename-Item "tools/7z_part.dll" "7z.dll" > nul 2>&1
 if not exist tools\md5.exe powershell "Invoke-WebRequest https://github.com/KoAiBitTuiLaAi/gnugnugbu/releases/download/dwawahjdawausuu/md5.exe -OutFile tools/md5_part.exe" || goto first_launch_download_failed
 powershell Rename-Item "tools/md5_part.exe" "md5.exe" > nul 2>&1
 if not exist tools\wget.exe powershell "Invoke-WebRequest https://github.com/KoAiBitTuiLaAi/gnugnugbu/releases/download/dwawahjdawausuu/wget.exe -OutFile tools/wget_part.exe" || goto first_launch_download_failed
 powershell Rename-Item "tools/wget_part.exe" "wget.exe" > nul 2>&1
 chcp 65001 > nul 2>&1
+
+:update_check
+MODE 120,30
+title Trình cài đặt Persona 4 Golden Việt hóa - Cập nhật
+echo Đang kiểm tra cập nhật cho trình cài đặt...
+set batchVersion=1.1
+del batchLatestVer.txt > nul 2>&1
+"tools/wget.exe" -O batchLatestVer.txt https://raw.githubusercontent.com/KoAiBitTuiLaAi/gnugnugbu/main/gggngniweignwi/wuauadbubaw.txt > nul 2>&1 || goto update_check_download_failed
+set /p batchLatestVer=<batchLatestVer.txt
+
+if "%batchLatestVer%" GTR "%batchVersion%" (
+    echo Đang cập nhật trình cài đặt...
+	timeout /t 3 > nul
+    "tools/wget.exe" -O "p4gvh_%batchLatestVer%.bat" https://raw.githubusercontent.com/KoAiBitTuiLaAi/gnugnugbu/main/gggngniweignwi.bat > nul 2>&1 || goto update_check_download_failed
+	start p4gvh_%batchLatestVer%.bat
+	(goto) 2>nul & del "%~f0"
+) else (
+	echo Trình cài đặt đang ở phiên bản mới nhất.
+	timeout /t 3 > nul
+)
 
 :dotnetRuntime_check
 if exist "%programfiles%\dotnet\shared\Microsoft.WindowsDesktop.App\9.0.4" (
