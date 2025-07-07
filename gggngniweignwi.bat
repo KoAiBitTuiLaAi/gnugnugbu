@@ -70,7 +70,7 @@ chcp 65001 > nul 2>&1
 MODE 120,30
 title Trình cài đặt Persona 4 Golden Việt hóa - Cập nhật
 echo Đang kiểm tra cập nhật cho trình cài đặt...
-set batchVersion=1.1
+set batchVersion=1.2
 del batchLatestVer.txt > nul 2>&1
 "tools/wget.exe" -O batchLatestVer.txt https://raw.githubusercontent.com/KoAiBitTuiLaAi/gnugnugbu/main/gggngniweignwi/wuauadbubaw.txt > nul 2>&1 || goto update_check_download_failed
 set /p batchLatestVer=<batchLatestVer.txt
@@ -297,10 +297,11 @@ exit
 MODE 120,30
 chcp 437 > nul 2>&1
 set /p batchLatestVer=<batchLatestVer.txt
+set /p buildTag=<reloaded2\Mods\p4gpc.localize.k8.release\tag.txt
 for /f "delims=" %%v in ('powershell "((Get-Item reloaded2\Mods\p4gpc.localize.k8.release\vidsubtitles_release.dll).VersionInfo.FileVersion) -replace '1.0.0.'"') do @set version=%%v
 call batch\main.bat
 echo Số phiên bản của trình cài đặt: %batchLatestVer%
-echo Phiên bản mod: %version%
+echo Phiên bản mod: %version% (%buildTag%^)
 echo Vui lòng chọn:
 echo 1. Cài mod Việt hóa
 echo 2. Gỡ mod Việt hóa
