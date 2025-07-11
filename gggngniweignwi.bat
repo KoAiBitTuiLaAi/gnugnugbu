@@ -70,7 +70,7 @@ chcp 65001 > nul 2>&1
 MODE 120,30
 title Trình cài đặt Persona 4 Golden Việt hóa - Cập nhật
 echo Đang kiểm tra cập nhật cho trình cài đặt...
-set batchVersion=1.2
+set batchVersion=1.3
 del batchLatestVer.txt > nul 2>&1
 "tools/wget.exe" -O batchLatestVer.txt https://raw.githubusercontent.com/KoAiBitTuiLaAi/gnugnugbu/main/gggngniweignwi/wuauadbubaw.txt > nul 2>&1 || goto update_check_download_failed
 set /p batchLatestVer=<batchLatestVer.txt
