@@ -159,12 +159,12 @@ if not exist reloaded2\Mods\p4gpc.localize.k8.release\vidsubtitles_release.dll (
 	)
 ) else (
 	Setlocal EnableDelayedExpansion
-	echo Bạn có muốn kiểm tra cập nhật?
+	echo Bạn có muốn kiểm tra cập nhật mod Việt hóa?
 	choice /c YN /n /m "Nhấn Y để chấp nhận, hoặc nhấn N để từ chối."
 	if !errorlevel! EQU 2 (
 		goto main_steam
 	)
-	goto update_check
+	goto content_check
 )
 
 :first_launch
@@ -227,7 +227,7 @@ if not exist p4pcvh-latest.zip (
 		)
 		echo Đang tải về và giải nén phiên bản %git_version%...
 		chcp 437 > nul 2>&1
-		powershell "Invoke-WebRequest https://github.com/KoAiBitTuiLaAi/gnugnugbu/releases/download/release/uwihw8ah4pVV-latest.zip -OutFile p4pcvh-latest.zip" || goto content_check_update_failed
+		powershell "Invoke-WebRequest https://github.com/KoAiBitTuiLaAi/gnugnugbu/releases/download/dwawahjdawausuu/uwihw8ah4pVV-latest.zip -OutFile p4pcvh-latest.zip" || goto content_check_update_failed
 		chcp 65001 > nul 2>&1
 	)
 ) else (
